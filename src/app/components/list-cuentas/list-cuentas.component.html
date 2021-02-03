@@ -1,0 +1,43 @@
+<br>
+<div class="container text-center">
+<table class="table mt-3">
+    <thead class="mt-3">
+        <tr>
+            <th>#ID</th>
+            <th>Titular</th>
+            <th>RUT</th>
+            <th>Moneda</th>
+            <th>Saldo</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cta of listCuentas">
+            <td>{{ cta.id }}</td>
+            <td>{{ cta.titular }}</td>
+            <td>{{ cta.rut }}</td>
+            <td>{{ cta.moneda }}</td>
+            <td>{{ cta.saldo }}</td>
+            <td>
+                <button class="btn btn-outline-danger border-btn"><i class="fas fa-trash-alt"></i></button>
+            </td>
+            <td>
+                <button class="btn btn-outline-primary border-btn" (click)="navega(cta.id)">
+                    <i class="fas fa-eye"></i></button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td><i class="fas fa-angle-double-left" (click)="rewind()"></i></td>
+            <td colspan="5">
+              <span *ngFor="let pagina of totalPages; let i = index">
+                <a style="cursor: pointer; padding-left: 7px; color: white;" (click)="setPage(i)" [ngClass]="{ 'text-primary' : i === page }">{{ i+1 }}</a>
+              </span>
+            </td>
+            <td><i class="fas fa-angle-double-right" (click)="forward()"></i></td>
+          </tr>
+    </tbody>
+</table>
+<button class="btn btn-outline-success border-btn mb-3" [routerLink]="['/add-cuenta']">
+    <i class="fas fa-plus-circle"></i> Crear Nueva Cuenta</button>
+</div>

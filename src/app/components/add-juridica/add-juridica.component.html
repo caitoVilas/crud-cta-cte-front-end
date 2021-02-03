@@ -1,0 +1,45 @@
+<div class="border-container text-center">
+    <br>
+    <h2>Crear Persona Juridica</h2>
+    <br>
+</div>
+
+<section class="border-container text-center mt-3">
+    <br>
+    <form [formGroup]="frmJuridica">
+        <div class="container ">
+            <input type="text" name="razonSocial" class="form-control mt-4 mb-2" placeholder="Ingresa la Razon Social" formControlName="razonSocial">
+            <div>
+                <span *ngIf="frmJuridica.get('razonSocial').errors && frmJuridica.get('razonSocial').touched" class="error mb-1">
+                    <i class="fas fa-exclamation-triangle"></i> La Razon Social es Requerida
+                </span>
+            </div>
+            <input type="text" name="foundation" class="form-control mb-2" placeholder="Ingresa el Año de fundacion" formControlName="foundation">
+            <div>
+                <span *ngIf="frmJuridica.get('foundation').errors && frmJuridica.get('foundation').touched" class="error mb-1">
+                    <i class="fas fa-exclamation-triangle"></i> El Año de Fundacion es Requerido
+                </span>
+            </div>
+            <input type="text" name="rut" class="form-control mb-2" placeholder="Ingresa el RUT"
+             formControlName="rut">
+            <div>
+                <span *ngIf="frmJuridica.get('rut').errors && frmJuridica.get('rut').touched" class="error mb-1">
+                    <i class="fas fa-exclamation-triangle"></i> El RUT es Requerido
+                </span>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-outline-danger border-btn mb-3" [routerLink]="['/titulares']">
+                <i class="fas fa-window-close"></i> Cancelar
+            </button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-outline-success border-btn mb-3" [disabled]="!frmJuridica.valid" (click)="saveJ()">
+                <i class="fas fa-check-square"></i> Guardar
+            </button>
+        </div>
+    </div>
+</section>

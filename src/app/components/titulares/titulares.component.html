@@ -1,0 +1,25 @@
+<div class="border-container text-center">
+    <br>
+    <h2>Titulares</h2>
+    <hr class="bg-dark">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-outline-secondary border-btn mb-3" (click)="getFisicas()">
+                Personas Fisicas</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-outline-secondary border-btn mb-3" (click)="getJuridicas()">
+                Personas Juridicas</button>
+        </div>
+    </div>
+</div>
+<!-- SECTION PERSONAS FISICAS -->
+<section class="border-container mt-3" *ngIf="pfFlag">
+   <app-list-fiscas></app-list-fiscas>
+</section>
+
+<!-- SECTION PERSONAS JURIDICAS -->
+<section class="border-container mt-3" *ngIf="pjFlag">
+   <app-list-juridicas></app-list-juridicas>
+</section>
+

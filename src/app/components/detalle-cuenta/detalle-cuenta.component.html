@@ -1,0 +1,77 @@
+<div class="border-container text-center">
+    <br>
+    <h2>Detalle Cuentas</h2>
+    <br>
+</div>
+<section class="border-container mt-3" >
+    <div class="row">
+        <div class="col-3 mt-3 text-center">
+            <p>Cuenta Numero : {{ idCuenta }}</p>
+        </div>
+        <div class="col-3 mt-3 text-center">
+            <p>RUT : {{ titular.rut }}</p>
+        </div>
+        <div class="col-3 mt-3 text-center" *ngIf="titFisica">
+            <p>{{ titular.name }} {{ titular.lastName}}</p>
+        </div>
+        <div class="col-3 mt-3 text-center" *ngIf="titJurida">
+            <p>{{ titular.razonSocial }} </p>
+        </div>
+        <div class="col-3 mt-3 text-center">
+            <p>Moneda : {{ cuenta.moneda }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-6 text-center">
+            <h5>Descubierto Disponible : {{ signoMoneda }} {{ disponible | number: '.2' }}</h5>
+        </div>
+
+        <div class="col-6 text-center">
+            <h4>Saldo : {{ signoMoneda }} {{ cuenta.saldo | number: '.2'  }}</h4>
+        </div>
+    </div>
+ </section>
+ <section class="border-container mt-3 text-center">
+     <br>
+        <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                       <th>Tipo</th>
+                       <th>Descripcion</th>
+                       <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mov of movimientos">
+                        <td>{{ mov.fecha }}</td>
+                        <td>{{ mov.tipo }}</td>
+                        <td>{{ mov.descripcion }}</td>
+                        <td>{{ mov.importe }}</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fas fa-angle-double-left" (click)="rewind()"></i></td>
+                        <td colspan="2">
+                          <span *ngFor="let pagina of totalPages; let i = index">
+                            <a style="cursor: pointer; padding-left: 7px; color: white;" (click)="setPage(i)" [ngClass]="{ 'text-primary' : i === page }">{{ i+1 }}</a>
+                          </span>
+                        </td>
+                        <td><i class="fas fa-angle-double-right" (click)="forward()"></i></td>
+                      </tr>
+                </tbody>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-outline-warning border-btn mb-2" [routerLink]="['/cuentas']">
+                    Volver a Cuentas</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-outline-success border-btn mb-2" (click)="loadAddDetalle(idCuenta)" >
+                   Crear Movimiento</button>
+            </div>
+        </div>
+      
+ </section>
+

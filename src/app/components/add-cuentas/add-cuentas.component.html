@@ -1,0 +1,114 @@
+<div class="border-container text-center">
+    <br>
+    <h2>Crear Nueva Cuenta</h2>
+    <br>
+</div>
+<section class="border-container mt-3">
+   <div class="border-container text-center">
+      
+       <div *ngIf="opTipo">
+        <h4 class="mt-3 text-primary">Tipo de Titular</h4>
+        <hr class="bg-dark">
+        <form [formGroup]="formTipo">
+            <div class="row">
+                <div class="col-6">
+                    <h5>Persona Fisica</h5>
+                    <input type="radio" name="tipo" value="F" formControlName="tipo">
+                </div>
+                <div class="col-6">
+                    <h5>Persona Juridica</h5>
+                   <input type="radio" name="tipo" value="J" formControlName="tipo">
+                </div>
+            </div>
+        </form>
+        </div>
+   
+      
+       <div *ngIf="opTitularF">
+        <!-- <hr class="bg-dark"> -->
+        <h4 class="text-primary">Seleccionar Titular</h4>
+        <hr class="bg-dark">
+        <div class="container">
+            <form  [formGroup]="formTitular">
+                <select name="titular" id="" class="form-control" formControlName="titular" >
+                    <option value="{{ tit.id }}" *ngFor="let tit of personasF" >
+                        {{ tit.name}} {{tit.lastName}} {{ tit.rut }}
+                    </option>
+                </select>
+            </form>
+         
+        </div>
+       </div>
+
+       <div *ngIf="opTitularJ">
+        <!-- <hr class="bg-dark"> -->
+        <h4 class="text-primary">Seleccionar Titular</h4>
+        <hr class="bg-dark">
+        <div class="container">
+            <form [formGroup]="formTitular">
+                <select name="titular" id="" class="form-control" formControlName="titular">
+                    <option value="{{ tit.id }}" *ngFor="let tit of personasJ">
+                        {{ tit.razonSocial}} {{tit.rut}} 
+                    </option>
+                </select>
+            </form>
+          
+        </div>
+       </div>
+
+       <div *ngIf="opMoneda">
+        <!-- <hr class="bg-dark"> -->
+        <h4 class="text-primary mt-2">Moneda</h4>
+        <hr class="bg-dark">
+      
+            <form [formGroup]="formMoneda">
+                <div class="row">
+                <div class="col-4">
+                    <h4>Peso</h4>
+                    <input type="radio" name="moneda" value="Peso" formControlName="moneda">
+                </div>
+                <div class="col-4">
+                    <h4>Dolar</h4>
+                    <input type="radio" name="moneda" value="Dolar" formControlName="moneda">
+                </div>
+                <div class="col-4">
+                    <h4>Euro</h4>
+                    <input type="radio" name="moneda" value="Euro" formControlName="moneda">
+                </div>
+            </div>
+            </form>
+      
+       </div>
+       <br>
+
+       <hr class="bg-dark">
+       <div class="row mb-2">
+           <div class="col-4" *ngIf="tipo == 'F' ">
+              <h5>Tipo de Cliente :  Persona Fisica</h5>
+           </div>
+           <div class="col-4" *ngIf="tipo == 'J' ">
+            <h5>Tipo de Cliente :  Persona Juridica</h5>
+         </div>
+           <div class="col-4" *ngIf="titular " >
+               <h5>Titular: {{ fullName }}</h5>
+           </div>
+           <div class="col-4" *ngIf="moneda">
+               <h5>Moneda : {{ moneda }}</h5>
+           </div>
+       </div>
+       <div class="row">
+        <div class="col-6">
+         <button class="btn btn-outline-danger border-btn mb-3" [routerLink]="['/cuentas']">
+            <i class="fas fa-window-close"></i>  Cancelar
+         </button>
+        </div>
+        <div class="col-6">
+         <button  class="btn btn-outline-success border-btn mb-3" [disabled]="!opGuardar" (click)="save()" >
+            <i class="fas fa-check-square"></i>  Guardar
+             </button>
+        </div>
+    </div>
+   </div>
+  
+ </section>
+

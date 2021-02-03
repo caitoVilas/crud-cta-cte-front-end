@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #bababa;
+    }
+body {
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+
+.container-section{
+    padding: 2rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+    /* max-height: 100vh; */
+    overflow-y: auto;
+}
+.border-container{
+    border-radius: 50px;
+    background: #bababa;
+    box-shadow:  10px 10px 23px #999999,
+            -10px -10px 23px #dbdbdb;
+}
+
+.border-btn {
+    border-radius: 50px;
+    background: #bababa; 
+    box-shadow:  6px 6px 12px #999999,
+            -6px -6px 12px #dbdbdb;
+}
+.img-header{
+    width: 75px;
+}
+.error{
+    display: block;
+    background-color: red;
+    color: white;
+}
+.img-home{
+    height: 120px;
+}

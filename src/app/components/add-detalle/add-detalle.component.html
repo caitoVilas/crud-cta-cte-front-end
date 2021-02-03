@@ -1,0 +1,60 @@
+<div class="border-container text-center">
+    <br>
+    <h2>Cargar Movimiento</h2>
+    <br>
+</div>
+
+<section class="border-container text-center mt-3">
+<br>
+<form [formGroup]="formMov">
+    <div class="row">
+        <div class="col-4">
+            <p>Tipo</p>
+        </div>
+        <div class="col-8">
+            <div class="container">
+              <select name="tipo" class="form-control mb-2" formControlName="tipo">
+                  <option value="Debito">Debito</option>
+                  <option value="Credito">Credito</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <p>Descripcion</p>
+        </div>
+        <div class="col-8">
+            <div class="container">
+                <textarea name="descripcion" icols="91" rows="3" class="form-control" formControlName="descripcion">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            Importe
+        </div>
+        <div class="col-8">
+            <div class="container">
+                <input type="text" class="form-control mb-2" formControlName="importe">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-outline-danger border-btn mb-2" (click)="volver(idCuenta)">
+                 Cancelar</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-outline-success border-btn mb-2" [disabled]="!formMov.valid"
+             (click)="addMovimiento()">
+                 Guardar</button>
+        </div>
+    </div>
+</form>
+</section>
