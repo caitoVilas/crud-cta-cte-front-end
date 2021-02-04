@@ -50,8 +50,13 @@ export class AddDetalleComponent implements OnInit {
        //TodoOK
        this._tipo = data.tipo;
        this._descripcion = data.descripcion;
-       this._importe = Number(data.importe);
+       if(data.tipo == 'Debito')
+       this._importe = Number(-data.importe);
      }
+     if(data.tipo == 'Credito'){
+      this._importe = Number(data.importe);
+     }
+     
     });
   }
 
@@ -65,7 +70,7 @@ export class AddDetalleComponent implements OnInit {
           this.formMov.reset();
       },
       err => {
-          Swal.fire(err.error.mensaje, '', 'error');
+          Swal.fire(err.error.mensaje, 'El Movimiento No se Imputo', 'error');
       }
     );
   }

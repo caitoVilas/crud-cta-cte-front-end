@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-6 text-center">
-            <h4>Saldo : {{ signoMoneda }} {{ cuenta.saldo | number: '.2'  }}</h4>
+            <h4 [ngClass]="{'positivo': cuenta.saldo >= 0, 'negativo': cuenta.saldo < 0 }">Saldo : {{ signoMoneda }} {{ cuenta.saldo | number: '.2'  }}</h4>
         </div>
     </div>
  </section>
@@ -45,10 +45,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let mov of movimientos">
-                        <td>{{ mov.fecha }}</td>
+                        <td>{{ mov.fecha  | date: 'dd/MM/yyyy'}}</td>
                         <td>{{ mov.tipo }}</td>
                         <td>{{ mov.descripcion }}</td>
-                        <td>{{ mov.importe }}</td>
+                        <td>{{ mov.importe  | number: '.2'}}</td>
                     </tr>
                     <tr class="text-center">
                         <td><i class="fas fa-angle-double-left" (click)="rewind()"></i></td>

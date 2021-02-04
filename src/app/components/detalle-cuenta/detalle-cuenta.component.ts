@@ -65,13 +65,26 @@ totalPages: Array<number> = [];
         this.cuenta = response;
         if(this.cuenta.moneda == 'Euro'){
           this.signoMoneda = '€';
-          this.disponible = TOPE_EURO - (-this.cuenta.saldo);
+          if(this.cuenta.saldo < 0){
+            this.disponible = TOPE_EURO - (-this.cuenta.saldo);
+          }
+          else{
+            this.disponible = TOPE_EURO;
+          }
         }else if(this.cuenta.moneda == 'Dolar'){
           this.signoMoneda = 'u$d';
-          this.disponible = TOPE_DOLAR - (-this.cuenta.saldo);
+          if(this.cuenta.saldo < 0) {
+            this.disponible = TOPE_DOLAR - (-this.cuenta.saldo);
+          }else{
+            this.disponible = TOPE_DOLAR;
+          }
         }else{
           this.signoMoneda = '$';
-          this.disponible = TOPE_PESO -(-this.cuenta.saldo);
+          if(this.cuenta.saldo < 0){
+            this.disponible = TOPE_PESO -(-this.cuenta.saldo);
+          }else{
+            this.disponible = TOPE_PESO;
+          }
         }
         this.getTitular();
       }

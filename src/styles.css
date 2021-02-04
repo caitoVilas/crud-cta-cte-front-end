@@ -41,3 +41,9 @@ body {
 .img-home{
     height: 120px;
 }
+.positivo{
+    color:  green;
+}
+.negativo{
+    color: red;
+}
