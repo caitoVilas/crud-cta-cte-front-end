@@ -9,15 +9,15 @@ import { CuentasDTO } from '../models/cuentas-dto';
 })
 export class CuentasService {
 
-  cuentasURL = 'http://localhost:8080/api/cuentas/'
+  cuentasURL = 'http://localhost:8080/api/cuentas/';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  list(page: number, size: number, order: string, asc: boolean): Observable<any> {
+  list(): Observable<any> {
 
-    return this.http.get<any>(this.cuentasURL + `?page=${page}&size=${size}&order=${order}&asc=${asc}`);
+    return this.http.get<any>(this.cuentasURL);
   }
 
   add(cuenta: CuentasDTO): Observable<any> {
@@ -28,5 +28,10 @@ export class CuentasService {
   get(id: number): Observable<Cuentas> {
 
     return this.http.get<Cuentas>(this.cuentasURL + id);
+  }
+
+  delete(id: number): Observable<any> {
+
+    return this.http.delete<any>(this.cuentasURL + id)
   }
 }

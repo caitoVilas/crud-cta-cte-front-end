@@ -6,6 +6,7 @@ import { ListCuentas } from 'src/app/models/llist-cuentas';
 import { CuentasService } from 'src/app/services/cuentas.service';
 import { PersonasFisicasService } from 'src/app/services/personas-fisicas.service';
 import { PersonasJuridicasService } from 'src/app/services/personas-juridicas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-cuentas',
@@ -14,14 +15,6 @@ import { PersonasJuridicasService } from 'src/app/services/personas-juridicas.se
 })
 export class ListCuentasComponent implements OnInit {
 
-  // PAGINADOR
-page = 0;
-size = 10;
-order = 'id';
-asc = true;
-isFirst = false;
-isLast = false;
-totalPages: Array<number> = [];
 
 cuentas: Cuentas[] = [];
 listCuenta: ListCuentas;
@@ -42,9 +35,9 @@ public _rut: string;
 
   getCuentas(){
 
-    this.cuentasService.list(this.page, this.size, this.order, this.asc).subscribe(
+    this.cuentasService.list().subscribe(
       response => {
-        this.cuentas = response.content;
+        this.cuentas = response;
 
         this.cuentas.forEach(cuenta =>{
           if(cuenta.tipo == 'F'){
@@ -67,9 +60,7 @@ public _rut: string;
               }
             );
           }
-          this.isFirst = response.first;
-          this.isLast = response.last;
-          this.totalPages = new Array(response['totalPages']);
+         
         });
        
       },
@@ -79,23 +70,17 @@ public _rut: string;
     );
   }
 
-  rewind(): void {
-    if(!this.isFirst){
-      this.page--;
-      this.getCuentas();
-    }
-  }
-  
-  forward(): void {
-    if(!this.isLast){
-      this.page++;
-      this.getCuentas();
-    }
-  }
-  
-  setPage(page: number): void {
-    this.page  = page;
-    this.getCuentas();
+  delete(id: number) {
+
+    this.cuentasService.delete(id).subscribe(
+      response => {
+         Swal.fire(response.mensaje);
+         this.getCuentas();
+      },
+      err => {
+        Swal.fire(err.error.mensaje,'', 'error');
+      }
+    );
   }
 
   navega(id: number) {

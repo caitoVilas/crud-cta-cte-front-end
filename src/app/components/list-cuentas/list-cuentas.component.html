@@ -20,14 +20,15 @@
             <td>{{ cta.moneda }}</td>
             <td>{{ cta.saldo }}</td>
             <td>
-                <button class="btn btn-outline-danger border-btn"><i class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-outline-danger border-btn" (click)="delete(cta.id)">
+                    <i class="fas fa-trash-alt"></i></button>
             </td>
             <td>
                 <button class="btn btn-outline-primary border-btn" (click)="navega(cta.id)">
                     <i class="fas fa-eye"></i></button>
             </td>
         </tr>
-        <tr class="text-center">
+        <!-- <tr class="text-center">
             <td><i class="fas fa-angle-double-left" (click)="rewind()"></i></td>
             <td colspan="5">
               <span *ngFor="let pagina of totalPages; let i = index">
@@ -35,7 +36,7 @@
               </span>
             </td>
             <td><i class="fas fa-angle-double-right" (click)="forward()"></i></td>
-          </tr>
+          </tr> -->
     </tbody>
 </table>
 <button class="btn btn-outline-success border-btn mb-3" [routerLink]="['/add-cuenta']">
